@@ -272,3 +272,14 @@ public class MainActivity extends Activity {
         super.onDestroy();
     }
                             }
+private VisPulseGenerator pulse = new VisPulseGenerator();
+
+// 1. Xin quyền RECORD_AUDIO lúc runtime (Visualizer bắt buộc).
+// 2. Sau khi mediaPlayer.prepare() / sẵn sàng phát:
+pulse.start(mediaPlayer.getAudioSessionId());
+
+// 3. Điều khiển VIS 0-4 (ví dụ SeekBar max=4):
+pulse.setVis(progress);
+
+// 4. Trong onDestroy() và khi đổi bài:
+pulse.stop();
